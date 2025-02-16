@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> c8905d1
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -9,12 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/16 12:15:08 by iabasala          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/02/16 12:15:09 by iabasala         ###   ########.fr       */
-=======
-/*   Updated: 2025/02/16 12:40:26 by iabasala         ###   ########.fr       */
->>>>>>> c8905d1
+/*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
+/*   Updated: 2025/02/16 12:49:20 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,62 +52,3 @@ int main(int argc, char **argv)
 {
     fractol(argc,argv);
 }
-<<<<<<< HEAD
-=======
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
-
-// Function to validate if input is a float
-int is_valid_float(char *str)
-{
-    char *endptr;
-    strtod(str, &endptr);
-    return (*endptr == '\0');
-}
-
-// Main parsing function
-int fractol(int argc, char **argv)
-{
-    // Case when there are two arguments (mandelbrot or burning_ship)
-    if (argc == 2)
-    {
-        if (strcmp(argv[1], "mandelbrot") != 0 && strcmp(argv[1], "burning_ship") != 0)
-        {
-            write(1, "___must be like this: ./a.out mandelbrot or ./a.out burning_ship___\n", 71);
-            return 0;
-        }
-    }
-
-    // Case when there are four arguments (julia with two float parameters)
-    else if (argc == 4)
-    {
-        if (strcmp(argv[1], "julia") != 0)
-        {
-            write(1, "___must be like this: ./a.out julia <real> <imaginary>___\n", 58);
-            return 0;
-        }
-        else if (!is_valid_float(argv[2]) || !is_valid_float(argv[3]))
-        {
-            write(1, "___Both parameters for julia must be valid floating-point numbers___\n", 71);
-            return 0;
-        }
-        // Now we can safely assign the real and imaginary parts
-        double real = atof(argv[2]);
-        double imaginary = atof(argv[3]);
-        // Use real and imaginary as needed
-    }
-
-    // If arguments are not valid for either case
-    else
-    {
-        write(1, "___Invalid number of arguments___\n", 34);
-        return 0;
-    }
-
-    // Return success if everything is correct
-    return 1;
-}
->>>>>>> 55a67aca3dcc01f19c0dd05850a46f5f5bac3f2b
-=======
->>>>>>> c8905d1

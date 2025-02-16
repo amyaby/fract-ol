@@ -1,8 +1,6 @@
-#include "fractol.h"
+#include "fractal.h"
 
 
-<<<<<<< HEAD:test.c
-=======
 int handle_key(int keycode, void *param)
 {
     (void)param;
@@ -16,7 +14,6 @@ int close_window(void *param)
     exit(0);
     return (0);
 }
->>>>>>> 55a67aca3dcc01f19c0dd05850a46f5f5bac3f2b:main.c
 
 int main()
 {
