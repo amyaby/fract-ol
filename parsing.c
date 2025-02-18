@@ -6,49 +6,56 @@
 /*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/16 12:49:20 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/17 20:53:40 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fractal.h"
 
-int fractol(int argc, char **argv)
+int cool_fractal(int argc, char **argv)
 {
     if (argc == 2)
     {
         if (ft_strcmp(argv[1], "mandelbrot") != 0 && ft_strcmp(argv[1], "burningship") != 0)
         {
             write(1, "___must be like this: mandelbrot or burningship___\n", 52);
-            return 0;
+            return (0);
         }
     }
+    return (1);
+}
 
-    else if (argc == 4)
+int cool_julia(int argc, char **argv)
+{
+    if (argc == 4 && ft_strcmp(argv[1], "julia") == 0)
     {
-        if (strcmp(argv[1], "julia") != 0)
-        {
-            write(1, "___must be like this: <real> <imaginary>___\n", 45);
-            return 0;
-        }
-        else if (!atodbl(argv[2]) || !atodbl(argv[3]))
-        {
-            write(1, "___Both parameters for julia must be valid floating-point numbers___\n", 71);
-            return 0;
-        }
         double real = atodbl(argv[2]);
         double imaginary = atodbl(argv[3]);
-    }
 
-    else
-    {
-        write(1, "___Invalid number of arguments___\n", 34);
-        return 0;
+        if ((real == 0.0 && argv[2][0] != '0') || (imaginary == 0.0 && argv[3][0] != '0'))
+        {
+            write(1, "___invalid number___\n", 22);
+            return (0);
+        }
+        return (1);
     }
-
-    return 1;
+    write(1, "___Invalid number of arguments___\n", 34);
+    return (0);
 }
+
+int fractol(int argc, char **argv)
+{
+    if (argc == 2)
+        return cool_fractal(argc, argv);
+    if (argc == 4)
+        return cool_julia(argc, argv);
+    write(1, "___Invalid number of arguments___\n", 34);
+    return (0);
+}
+
 int main(int argc, char **argv)
 {
-    fractol(argc,argv);
+    return (fractol(argc, argv));
 }
+
