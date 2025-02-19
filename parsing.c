@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/17 20:53:40 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:24:14 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ int fractol(int argc, char **argv)
     write(1, "___Invalid number of arguments___\n", 34);
     return (0);
 }
-
-int main(int argc, char **argv)
+int result(int argc, char **argv)
 {
     return (fractol(argc, argv));
 }
+
 
