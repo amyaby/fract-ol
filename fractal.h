@@ -6,31 +6,55 @@
 /*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/19 16:42:09 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:03:47 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTAL_H
 #define FRACTAL_H
 
-#define WIDTH 800
-#define HEIGHT 800
-#define MAX_ITER 100
-
-#include <stdio.h>
-#include <stdlib.h> // exit()
 #include "minilibx-linux/mlx.h"
 #include <unistd.h>
+#include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 
-int ft_strcmp(char *s1,char *s2);
-double atodbl(char *str);
-void    draw_mandelbrot(void *mlx, void *win);
-int cool_fractal(int argc, char **argv);
-int cool_julia(int argc, char **argv);
-int fractol(int argc, char **argv);
-int close_window(void *param);
-int handle_key(int keycode, void *param);
+#define WIDTH 800
+#define HEIGHT 800
+#define MAX_ITER 2000
 
+typedef struct s_mandelbrot
+{
+    double real;
+    double imag;
+    double scale;
+    double x_offset;
+    double y_offset;
+} t_mandelbrot;
+
+typedef struct s_julia
+{
+    double c_re;
+    double c_im;
+    double scale;
+    double x_offset;
+    double y_offset;
+    void *mlx;
+    void *win;
+    void *img;
+    char *img_data;
+    int size_line;
+    int bpp;
+    int endian;
+} t_julia;
+
+// Function prototypes
+int     fractol(int argc, char **argv);
+void    draw_mandelbrot(void *mlx, void *win, t_mandelbrot *mandelbrot);
+void    draw_julia(t_julia *data);
+int     handle_key(int keycode, void *param);
+int     close_window(void *param);
+double  atodbl(char *str);
+int     ft_strcmp(const char *s1, const char *s2);
 
 #endif
