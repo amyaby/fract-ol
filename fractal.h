@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/27 04:56:58 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:47:26 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ typedef struct s_mandelbrot
     double scale;
     double x_offset;
     double y_offset;
+     int     is_mandelbrot;
+      void *mlx;
+    void *win;
+        double  zoom;
+
 } t_mandelbrot;
 
 typedef struct s_julia
@@ -46,6 +51,7 @@ typedef struct s_julia
     int size_line;
     int bpp;
     int endian;
+    double  zoom;
 } t_julia;
 
 int     fractol(int argc, char **argv);
@@ -55,5 +61,8 @@ int     handle_key(int keycode, void *param);
 int     close_window(void *param);
 double  atodbl(char *str);
 int     ft_strcmp(const char *s1, const char *s2);
+int handle_mouse_mandelbrot(int button, int x, int y, t_mandelbrot *data);
+int handle_mouse_julia(int button, int x, int y, t_julia *data);
+
 
 #endif
