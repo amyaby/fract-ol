@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractal.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/22 15:03:47 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/27 04:21:17 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #define WIDTH 800
 #define HEIGHT 800
-#define MAX_ITER 2000
+#define MAX_ITER 100
 
 typedef struct s_mandelbrot
 {
@@ -47,7 +47,6 @@ typedef struct s_julia
     int bpp;
     int endian;
 } t_julia;
-
 // Function prototypes
 int     fractol(int argc, char **argv);
 void    draw_mandelbrot(void *mlx, void *win, t_mandelbrot *mandelbrot);
