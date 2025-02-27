@@ -22,6 +22,7 @@ int handle_mouse_julia(int button, int x, int y, t_julia *data)
         data->zoom *= 0.9;
      data->x_offset += (x - WIDTH / 2) / (0.5 * data->zoom * WIDTH);
     data->y_offset += (y - HEIGHT / 2) / (0.5 * data->zoom * HEIGHT);
+    data->scale = 4.0 / WIDTH / data->zoom;
     draw_julia(data);
     return (0);
 }
@@ -33,6 +34,7 @@ int handle_mouse_mandelbrot(int button, int x, int y, t_mandelbrot *data)
         data->zoom *= 0.9;
     data->x_offset += (x - WIDTH / 2) / (0.5 * data->zoom * WIDTH);
     data->y_offset += (y - HEIGHT / 2) / (0.5 * data->zoom * HEIGHT);
+    data->scale = 4.0 / WIDTH / data->zoom;
     draw_mandelbrot(data->mlx, data->win, data);
 
     return (0);
