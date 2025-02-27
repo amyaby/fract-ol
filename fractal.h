@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/27 04:21:17 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/27 04:56:58 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_julia
     int bpp;
     int endian;
 } t_julia;
-// Function prototypes
+
 int     fractol(int argc, char **argv);
 void    draw_mandelbrot(void *mlx, void *win, t_mandelbrot *mandelbrot);
 void    draw_julia(t_julia *data);

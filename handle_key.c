@@ -4,7 +4,7 @@
 int handle_key(int keycode, void *param)
 {
     (void)param;
-    if (keycode == 65307) // Escape key
+    if (keycode == 65307)
         exit(0);
     return (0);
 }
