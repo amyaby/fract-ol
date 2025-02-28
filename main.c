@@ -6,22 +6,27 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 01:27:25 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/28 16:04:44 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:55:13 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractal.h"
 
-// static int init_mlx(void **mlx, void **win)
-// {
-//     *mlx = mlx_init();
-//     if (!*mlx)
-//         return (0);
-//     *win = mlx_new_window(*mlx, WIDTH, HEIGHT, "Fractal");
-//     if (!*win)
-//         return (0);
-//     return (1);
-// }
+static int init_mlx(void **mlx, void **win)
+{
+    *mlx = mlx_init();
+    if (!*mlx)
+        return (0);
+    *win = mlx_new_window(*mlx, WIDTH, HEIGHT, "Fractal");
+    if (!*win)
+    {
+        mlx_destroy_display(*mlx);
+        free(*mlx);
+        return (0); 
+    }
+       
+    return (1);
+}
 
 void draw_fractal(void *mlx, void *win, char **argv)
 {
@@ -35,12 +40,8 @@ void draw_fractal(void *mlx, void *win, char **argv)
         mandelbrot.y_offset = -3.0 + (HEIGHT / WIDTH) * 2.0 + 1.0;
         mandelbrot.mlx = mlx;
         mandelbrot.win = win;
-        //mandelbrot.x_offset = -0.75;
-       // mandelbrot.y_offset = 0.0;
-        draw_mandelbrot(&mandelbrot);
-         mlx_mouse_hook(win, zoom_mandelbrot, &mandelbrot);
-         // draw_mandelbrot(mlx, win, &mandelbrot);
-        // free_mandelbrot(&mandelbrot);
+         mandelbrot_main(mandelbrot);
+         free_mandelbrot(&mandelbrot);
 
     }
     else if (ft_strcmp(argv[1], "julia") == 0)
@@ -48,33 +49,54 @@ void draw_fractal(void *mlx, void *win, char **argv)
         double real = atodbl(argv[2]);
         double imaginary = atodbl(argv[3]);
         data = (t_julia){real, imaginary, 4.0 / WIDTH, 0.0, 0.0, mlx, win, NULL, NULL,0 , 0, 0};
-        draw_julia(&data);
-           //mlx_mouse_hook(win, zoom_julia, &data);
+        julia_main(data);
 
-              // draw_julia(&data);
-
-            //   free_julia(&data);
+             free_julia(&data);
 
 
     }
 }
 
-int main()
+int julia_main(t_julia data)
 {
-    t_mandelbrot data;
+    draw_julia(&data);
+    mlx_hook(data.win, 17, 0, close_window, NULL);
+    mlx_key_hook(data.win, handle_key, NULL);
 
-    // if (!fractol(argc, argv))
-    //     return (1);
-
-    // if (!init_mlx(&mlx, &win))
-    //     return (1);
-    data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "Fractal");
-    data = (t_mandelbrot){0, 0, 5.0 / WIDTH, 0.0, 0.0, data.mlx, data.win, NULL, NULL, 0, 0,0,0,0};
+    mlx_mouse_hook(data.win, zoom_julia, &data);
+    mlx_loop(data.mlx);
+    free_julia(&data);
+    return (0);
+}
+int mandelbrot_main( t_mandelbrot data)
+{
     draw_mandelbrot(&data);
     mlx_hook(data.win, 17, 0, close_window, NULL);
     mlx_key_hook(data.win, handle_key, NULL);
+
     mlx_mouse_hook(data.win, zoom_mandelbrot, &data);
+    
     mlx_loop(data.mlx);
+        free_mandelbrot(&data);
+
     return (0);
+}
+int main(int argc, char**argv)
+{
+    (void)argc;
+     void *mlx;
+    void *win;
+    if(!fractol(argc, argv))
+            return 0;
+    if(!init_mlx(&mlx, &win))
+    {
+         if (mlx) free(mlx);
+         return 1;
+    }
+        
+    draw_fractal(mlx, win, argv);
+    mlx_destroy_window(mlx, win);
+    mlx_destroy_display(mlx);
+    free(mlx);
+    return 0;
 }

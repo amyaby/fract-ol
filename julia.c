@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 02:31:48 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/28 14:31:49 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:37:12 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,5 @@ void draw_julia(t_julia *data)
     }
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     mlx_destroy_image(data->mlx, data->img);
-    //data->img = NULL;
-    //data->img_data = NULL;
 }
 

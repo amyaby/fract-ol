@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/28 16:01:08 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:54:36 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ int     fractol(int argc, char **argv);
 void    draw_mandelbrot(t_mandelbrot *mandelbrot);
 void    draw_julia(t_julia *data);
 
-int     handle_key(int keycode, void *param);
-int     close_window(void *param);
+int     handle_key(int keycode, t_julia *data);
+int close_window(t_julia *data);
+
 double  atodbl(char *str);
 int     ft_strcmp(const char *s1, const char *s2);
 void draw_fractal(void *mlx, void *win, char **argv);
@@ -78,6 +79,9 @@ void free_julia(t_julia *julia);
 void free_mandelbrot(t_mandelbrot *mandelbrot);
 int    zoom_mandelbrot(int button, int x, int y, t_mandelbrot *data);
 int     zoom_julia(int button, int x, int y, t_julia *data);
+int julia_main(t_julia data);
+int mandelbrot_main(t_mandelbrot data);
+
 
 
 

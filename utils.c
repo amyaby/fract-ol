@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iabasala <iabasala@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:14:47 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/22 13:07:17 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 20:40:28 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,6 @@ double parse_sign_and_int(char *str, int *i)
     return sign * result;
 }
 
-/*double parse_fract_part(char *str, int *i)
-{
-    double result = 0.0;
-    double decimal_place = 1.0;
-
-    if (str[*i] == '.')
-    {
-        (*i)++;
-
-        // Check for multiple decimal points
-        if (str[*i] == '.')
-        {
-            write(1, "Error: Invalid number format (multiple decimal points)\n", 56);
-            return 0.0;
-        }
-
-        while (is_digit(str[*i]))
-        {
-            decimal_place /= 10;
-            result += (str[*i] - '0') * decimal_place;
-            (*i)++;
-        }
-    }
-
-    return result;
-}*/
 double parse_fract_part(char *str, int *i)
 {
     double result = 0.0;
@@ -94,28 +68,6 @@ double parse_fract_part(char *str, int *i)
     return result;
 }
 
-/*double atodbl(char *str)
-{
-    double result = 0.0;
-    int i = 0;
-
-    result = parse_sign_and_int(str, &i);
-
-    result += parse_fract_part(str, &i);
-
-    // Check for invalid characters after parsing
-    while (str[i])
-    {
-        if (!is_digit(str[i]) && str[i] != '.' && str[i] != '+' && str[i] != '-')
-        {
-            write(1, "Error: Invalid character in number\n", 34);
-            return 0.0;
-        }
-        i++;
-    }
-
-    return result;
-}*/
 double atodbl(char *str)
 {
     double result = 0.0;
@@ -125,12 +77,11 @@ double atodbl(char *str)
 
     result += parse_fract_part(str, &i);
 
-    // Check for invalid characters after parsing
     while (str[i])
     {
         if (!is_digit(str[i]) && str[i] != '.' && str[i] != '+' && str[i] != '-')
         {
-            return 0.0; // Return 0.0 for invalid input
+            return 0.0;
         }
         i++;
     }
