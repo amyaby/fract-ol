@@ -6,11 +6,11 @@
 #    By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/16 12:15:13 by iabasala          #+#    #+#              #
-#    Updated: 2025/02/27 11:16:21 by iabasala         ###   ########.fr        #
+#    Updated: 2025/02/28 07:06:12 by iabasala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = parsing.c utils.c mandelbrot.c  handle_key.c julia.c main.c
+SRCS = parsing.c utils.c mandelbrot.c  handle_key.c julia.c main.c free.c
 OBJS = ${SRCS:.c=.o}
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
@@ -31,3 +31,6 @@ fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
+
+.SECONDARY:
+.DENY: all clean fclean re

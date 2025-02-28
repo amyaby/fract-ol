@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/27 12:47:26 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:01:08 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@ typedef struct s_mandelbrot
     double scale;
     double x_offset;
     double y_offset;
-     int     is_mandelbrot;
-      void *mlx;
+    void *mlx;
     void *win;
-        double  zoom;
+    void *img;
+    char *data;
+    int bpp;
+    int sl;
+    int endian;
+    int x;
+    int y;
 
 } t_mandelbrot;
 
@@ -51,18 +56,29 @@ typedef struct s_julia
     int size_line;
     int bpp;
     int endian;
-    double  zoom;
 } t_julia;
 
+typedef struct s_range
+{
+    double min;
+    double max;
+} t_range;
+
+
 int     fractol(int argc, char **argv);
-void    draw_mandelbrot(void *mlx, void *win, t_mandelbrot *mandelbrot);
+void    draw_mandelbrot(t_mandelbrot *mandelbrot);
 void    draw_julia(t_julia *data);
+
 int     handle_key(int keycode, void *param);
 int     close_window(void *param);
 double  atodbl(char *str);
 int     ft_strcmp(const char *s1, const char *s2);
-int handle_mouse_mandelbrot(int button, int x, int y, t_mandelbrot *data);
-int handle_mouse_julia(int button, int x, int y, t_julia *data);
+void draw_fractal(void *mlx, void *win, char **argv);
+void free_julia(t_julia *julia);
+void free_mandelbrot(t_mandelbrot *mandelbrot);
+int    zoom_mandelbrot(int button, int x, int y, t_mandelbrot *data);
+int     zoom_julia(int button, int x, int y, t_julia *data);
+
 
 
 #endif

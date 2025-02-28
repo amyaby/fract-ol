@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:23:37 by iabasala          #+#    #+#             */
-/*   Updated: 2025/02/27 13:08:15 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:56:55 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,26 @@ static int get_color(int iter)
     return (0xFFFFFF - iter * 500);
 }
 
-void draw_mandelbrot(void *mlx, void *win, t_mandelbrot *mandelbrot)
+void draw_mandelbrot(t_mandelbrot *mandelbrot)
 {
-    void *img;
-    char *data;
-    int bpp;
-    int sl;
-    int endian;
-    int x;
-    int y;
     int iter;
 
-    img = mlx_new_image(mlx, WIDTH, HEIGHT);
-    data = mlx_get_data_addr(img, &bpp, &sl, &endian);
-    y = -1;
-    while (++y < HEIGHT)
+    mandelbrot->img = mlx_new_image(mandelbrot->mlx, WIDTH, HEIGHT);
+    mandelbrot->data = mlx_get_data_addr(mandelbrot->img, &mandelbrot->bpp, &mandelbrot->sl, &mandelbrot->endian);
+    mandelbrot->y = -1;
+    while (++mandelbrot->y < HEIGHT)
     {
-        x = -1;
-        while (++x < WIDTH)
+        mandelbrot->x = -1;
+        while (++mandelbrot->x < WIDTH)
         {
-            mandelbrot->real = (x - WIDTH / 2.0) * mandelbrot->scale + mandelbrot->x_offset;
-            mandelbrot->imag = (y - HEIGHT / 2.0) * mandelbrot->scale + mandelbrot->y_offset;
+            mandelbrot->real = (mandelbrot->x - WIDTH / 2.0) * mandelbrot->scale + mandelbrot->x_offset;
+            mandelbrot->imag = (mandelbrot->y - HEIGHT / 2.0) * mandelbrot->scale + mandelbrot->y_offset;
             iter = calculate_mandelbrot(mandelbrot->real, mandelbrot->imag);
-            *(int *)(data + (y * sl) + (x * 4)) = get_color(iter);
+            *(int *)(mandelbrot->data + (mandelbrot->y * mandelbrot->sl) + (mandelbrot->x * 4)) = get_color(iter);
         }
     }
-    mlx_put_image_to_window(mlx, win, img, 0, 0);
-    mlx_destroy_image(mlx, img);
+    mlx_put_image_to_window(mandelbrot->mlx, mandelbrot->win, mandelbrot->img, 0, 0);
+    mlx_destroy_image(mandelbrot->mlx, mandelbrot->img);
 }
+
+
