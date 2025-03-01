@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/01 14:47:53 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:14:46 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@
 # define WIDTH 800
 # define HEIGHT 800
 # define MAX_ITER 100
+
+typedef struct s_julia
+{
+	double	c_re;
+	double	c_im;
+	double	scale;
+	double	x_offset;
+	double	y_offset;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*img_data;
+	int		size_line;
+	int		bpp;
+	int		endian;
+}			t_julia;
 
 typedef struct s_mandelbrot
 {
@@ -42,28 +58,14 @@ typedef struct s_mandelbrot
 
 }			t_mandelbrot;
 
-typedef struct s_julia
-{
-	double	c_re;
-	double	c_im;
-	double	scale;
-	double	x_offset;
-	double	y_offset;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*img_data;
-	int		size_line;
-	int		bpp;
-	int		endian;
-}			t_julia;
+
 
 int			fractol(int argc, char **argv);
 void		draw_mandelbrot(t_mandelbrot *mandelbrot);
 void		draw_julia(t_julia *data);
 
 int			handle_key(int keycode, t_mandelbrot *data);
-int			close_window(t_mandelbrot *data);
+int			close_window_m(t_mandelbrot *data);
 double		atodbl(char *str);
 int			ft_strcmp(const char *s1, const char *s2);
 void		draw_fractal(void *mlx, void *win, char **argv);
@@ -73,5 +75,6 @@ int			zoom_mandelbrot(int button, int x, int y, t_mandelbrot *data);
 int			zoom_julia(int button, int x, int y, t_julia *data);
 int			julia_main(t_julia *data);
 int			mandelbrot_main(t_mandelbrot *data);
+int	close_window_j(t_julia *data);
 
 #endif

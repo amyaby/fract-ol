@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 01:27:25 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/01 14:55:55 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/01 22:19:40 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	draw_fractal(void *mlx, void *win, char **argv)
 int	julia_main(t_julia *data)
 {
 	draw_julia(data);
-	mlx_hook(data->win, 17, 0, close_window, NULL);
+	mlx_hook(data->win, 17, 0, close_window_j, data);
 	mlx_key_hook(data->win, handle_key, data);
 	mlx_mouse_hook(data->win, zoom_julia, data);
 	mlx_loop(data->mlx);
@@ -66,7 +66,7 @@ int	julia_main(t_julia *data)
 int	mandelbrot_main(t_mandelbrot *data)
 {
 	draw_mandelbrot(data);
-	mlx_hook(data->win, 17, 0, close_window, data);
+	mlx_hook(data->win, 17, 0, close_window_m, data);
 	mlx_key_hook(data->win, handle_key, data);
 	mlx_mouse_hook(data->win, zoom_mandelbrot, data);
 	mlx_loop(data->mlx);

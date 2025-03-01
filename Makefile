@@ -6,31 +6,27 @@
 #    By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/16 12:15:13 by iabasala          #+#    #+#              #
-#    Updated: 2025/02/28 21:03:31 by iabasala         ###   ########.fr        #
+#    Updated: 2025/03/01 22:09:40 by iabasala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = parsing.c utils.c mandelbrot.c  handle_key.c julia.c main.c free.c
-OBJS = ${SRCS:.c=.o}
+NAME = fractol
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lminilibx-linux -lmlx -lX11 -lXext -lm
-NAME = fractal
+MLXFLAGS = -lmlx_Linux -lXext -lX11 -lm
+FILES = main.c parsing.c utils.c mandelbrot.c handle_key.c julia.c free.c
 
-all: ${NAME}
+FILES_o = $(FILES:.c=.o)
 
-${NAME}: ${OBJS}
-	cc $(OBJS) $(MLX_FLAGS) -o $(NAME)
+all: $(NAME)
 
-%.o: %.c
-	cc $(CFLAGS) -c $< -o $@
+$(NAME): $(FILES_o)
+	$(CC) $(CFLAGS) $(FILES_o) -o $(NAME) $(MLXFLAGS)
 
 clean:
-	${RM} ${OBJS}
+	rm -rf $(FILES_o)
 
 fclean: clean
-	${RM} ${NAME}
+	rm -f $(NAME)
 
 re: fclean all
-
-.SECONDARY:
-.DENY: all clean fclean re
