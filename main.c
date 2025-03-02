@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 01:27:25 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/01 22:19:40 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/02 12:40:03 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	if (!fractol(argc, argv))
-		return (0);
+		return (1);
 	if (!init_mlx(&mlx, &win))
 	{
 		if (mlx)
