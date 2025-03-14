@@ -6,7 +6,7 @@
 #    By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/16 12:15:13 by iabasala          #+#    #+#              #
-#    Updated: 2025/03/01 22:09:40 by iabasala         ###   ########.fr        #
+#    Updated: 2025/03/14 02:14:13 by iabasala         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,3 +30,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.SECONDARY:
+.DENY: all clean fclean re

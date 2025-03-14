@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 01:27:25 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/02 12:40:03 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/14 01:04:16 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	draw_fractal(void *mlx, void *win, char **argv)
 	if (ft_strcmp(argv[1], "mandelbrot") == 0)
 	{
 		mandelbrot.scale = 4.0 / WIDTH;
-		mandelbrot.x_offset = -2.0 + 1.25;
-		mandelbrot.y_offset = -3.0 + (HEIGHT / WIDTH) * 2.0 + 1.0;
+		mandelbrot.x_offset = -0.75;
+		mandelbrot.y_offset = 0;
 		mandelbrot.mlx = mlx;
 		mandelbrot.win = win;
 		mandelbrot_main(&mandelbrot);

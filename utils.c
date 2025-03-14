@@ -6,83 +6,55 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:14:47 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/01 14:56:49 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/14 00:01:00 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractal.h"
 
-int	is_digit(int c)
+double	parse_fractional_part(char *str, int *index)
 {
-	return (c >= '0' && c <= '9');
-}
+	double	fraction;
+	double	divisor;
 
-double	parse_sign_and_int(char *str, int *i)
-{
-	double	result;
-	int		sign;
-
-	result = 0.0;
-	sign = 1;
-	while (str[*i] == ' ' || (str[*i] >= 9 && str[*i] <= 13))
-		(*i)++;
-	if (str[*i] == '-' || str[*i] == '+')
+	fraction = 0.0;
+	divisor = 1.0;
+	while (str[*index] >= '0' && str[*index] <= '9')
 	{
-		if (str[*i] == '-')
-			sign = -1;
-		(*i)++;
+		fraction = fraction * 10.0 + (str[*index] - '0');
+		divisor *= 10.0;
+		(*index)++;
 	}
-	while (is_digit(str[*i]))
-	{
-		result = result * 10 + (str[*i] - '0');
-		(*i)++;
-	}
-	return (sign * result);
-}
-
-double	parse_fract_part(char *str, int *i)
-{
-	double	result;
-	double	decimal_place;
-
-	result = 0.0;
-	decimal_place = 1.0;
-	if (str[*i] == '.')
-	{
-		(*i)++;
-		if (str[*i] == '.')
-		{
-			return (0.0);
-		}
-		while (is_digit(str[*i]))
-		{
-			decimal_place /= 10;
-			result += (str[*i] - '0') * decimal_place;
-			(*i)++;
-		}
-	}
-	return (result);
+	return (fraction / divisor);
 }
 
 double	atodbl(char *str)
 {
-	double	result;
-	int		i;
-
+	double (result), (fraction);
+	int (sign), (i);
 	result = 0.0;
+	fraction = 0.0;
+	sign = 1;
 	i = 0;
-	result = parse_sign_and_int(str, &i);
-	result += parse_fract_part(str, &i);
-	while (str[i])
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (!is_digit(str[i]) && str[i] != '.' && str[i] != '+'
-			&& str[i] != '-')
-		{
-			return (0.0);
-		}
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (result);
+	if (!(str[i] >= '0' && str[i] <= '9'))
+		return (EXIT_FAILURE);
+	while (str[i] >= '0' && str[i] <= '9')
+		result = result * 10.0 + (str[i++] - '0');
+	if (str[i] == '.')
+	{
+		i++;
+		fraction = parse_fractional_part(str, &i);
+	}
+	result += fraction;
+	return (result * sign);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
