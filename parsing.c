@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/16 02:05:24 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/16 03:19:47 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,6 @@ int	cool_julia(int argc, char **argv)
 	double	real;
 	double	imaginary;
 
-	if (argc != 4 || ft_strcmp(argv[1], "julia") != 0)
-	{
-		write(1, "___❌Invalid number of arguments❌___\n", 41);
-		return (0);
-	}
 	if (is_invalid_format(argv[2]) || is_invalid_format(argv[3]))
 	{
 		write(1, "❌Error: Invalid number format for Julia parameters\n", 53);
