@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/16 00:14:05 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/16 02:04:32 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	cool_julia(int argc, char **argv)
 	}
 	if (is_invalid_format(argv[2]) || is_invalid_format(argv[3]))
 	{
-		write(1, "❌Error: Invalid number format for Julia parameters\n", 51);
+		write(1, "❌Error: Invalid number format for Julia parameters\n", 53);
 		return (0);
 	}
 	real = atodbl(argv[2]);
@@ -72,7 +72,7 @@ int	cool_julia(int argc, char **argv)
 	if ((real == 0.0 && (argv[2][0] != '0' || argv[2][1] != '\0')) ||
 		(imaginary == 0.0 && (argv[3][0] != '0' || argv[3][1] != '\0')))
 	{
-		write(1, "❌Error: Invalid number format for Julia parameters\n", 51);
+		write(1, "❌Error: Invalid number format for Julia parameters\n", 54);
 		return (0);
 	}
 	return (1);
@@ -92,7 +92,7 @@ int	fractol(int argc, char **argv)
 		}
 		else
 		{
-			write(1, "___must be like this: mandelbrot or julia___\n", 46);
+			write(1, "___❌must be like this: mandelbrot or julia❌___\n", 52);
 			return (0);
 		}
 	}
@@ -102,6 +102,6 @@ int	fractol(int argc, char **argv)
 			return (0);
 		return (1);
 	}
-	write(1, "___Invalid number of arguments___\n", 34);
+	write(1, "___❌Invalid number of arguments❌___\n", 41);
 	return (0);
 }
