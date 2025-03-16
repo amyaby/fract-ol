@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/16 03:19:47 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/16 03:44:39 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	cool_julia(int argc, char **argv)
 {
 	double	real;
 	double	imaginary;
+	(void)argc;
 
 	if (is_invalid_format(argv[2]) || is_invalid_format(argv[3]))
 	{
