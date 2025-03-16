@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:48:07 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/16 02:04:32 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/16 02:05:24 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	cool_mandelbrot(int argc, char **argv)
 		if (ft_strcmp(argv[1], "mandelbrot") != 0 && ft_strcmp(argv[1],
 				"julia") != 0)
 		{
-			write(1, "___must be like this: mandelbrot or julia___\n", 46);
+			write(1, "___❌must be like this: mandelbrot or julia❌___\n", 52);
 			return (0);
 		}
 	}
