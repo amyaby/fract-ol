@@ -6,7 +6,7 @@
 /*   By: iabasala <iabasala@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 16:30:44 by iabasala          #+#    #+#             */
-/*   Updated: 2025/03/14 00:11:26 by iabasala         ###   ########.fr       */
+/*   Updated: 2025/03/15 23:49:49 by iabasala         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ typedef struct s_mandelbrot
 int			fractol(int argc, char **argv);
 void		draw_mandelbrot(t_mandelbrot *mandelbrot);
 void		draw_julia(t_julia *data);
+int			ft_isdigit(int c);
+
 
 int			handle_key(int keycode, t_mandelbrot *data);
 int			close_window_m(t_mandelbrot *data);
