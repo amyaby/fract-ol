@@ -35,20 +35,23 @@ int	is_invalid_format(char *str)
 {
 	int	i;
 
-	if (str[0] == '.')
-		return (1);
-	if ((str[0] == '+' || str[0] == '-') && str[1] == '.')
-		return (1);
-	if ((str[0] == '+' || str[0] == '-') && (str[1] == '+' || str[1] == '-'))
-		return (1);
 	i = 0;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-'
-			&& str[i] != '.')
-			return (1);
+	if (str[i] == '+' || str[i] == '-')
 		i++;
-	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	else if (str[i] == '.' && i > 0 && (str[i - 1] >= '0' && str[i - 1] <= '9'))
+		i++;
+	else
+		return (1);
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+		i++;
+	if (str[i] == '\0' && i > 0 && (str[i - 1] >= '0' && str[i - 1] <= '9'))
+		return (0);
+	else
+		return (1);
 	return (0);
 }
 
@@ -56,8 +59,8 @@ int	cool_julia(int argc, char **argv)
 {
 	double	real;
 	double	imaginary;
-	(void)argc;
 
+	(void)argc;
 	if (is_invalid_format(argv[2]) || is_invalid_format(argv[3]))
 	{
 		write(1, "❌Error: Invalid number format for Julia parameters\n", 53);
@@ -65,12 +68,6 @@ int	cool_julia(int argc, char **argv)
 	}
 	real = atodbl(argv[2]);
 	imaginary = atodbl(argv[3]);
-	if ((real == 0.0 && (argv[2][0] != '0' || argv[2][1] != '\0')) ||
-		(imaginary == 0.0 && (argv[3][0] != '0' || argv[3][1] != '\0')))
-	{
-		write(1, "❌Error: Invalid number format for Julia parameters\n", 54);
-		return (0);
-	}
 	return (1);
 }
 
@@ -80,24 +77,25 @@ int	fractol(int argc, char **argv)
 	{
 		if (ft_strcmp(argv[1], "mandelbrot") == 0)
 			return (1);
-		else if (ft_strcmp(argv[1], "julia") == 0)
-		{
-			write(1, "___❌Julia requires real and imaginary parameters❌___\n",
-				58);
-			return (0);
-		}
 		else
 		{
 			write(1, "___❌must be like this: mandelbrot or julia❌___\n", 52);
 			return (0);
 		}
 	}
-	if (argc == 4 && ft_strcmp(argv[1], "julia") == 0)
+	if (argc == 4)
 	{
-		if (!cool_julia(argc, argv))
+		if (ft_strcmp(argv[1], "julia") == 0)
+		{
+			if (!cool_julia(argc, argv))
+				return (0);
+		}
+		else
+		{
+			write(1, "___❌must be like this: mandelbrot or julia❌___\n", 52);
 			return (0);
+		}
 		return (1);
 	}
-	write(1, "___❌Invalid number of arguments❌___\n", 41);
-	return (0);
+	return (write(1, "__❌invalid argument__", 22), 0);
 }
