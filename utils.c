@@ -12,18 +12,18 @@
 
 #include "fractal.h"
 
-double	parse_fractional_part(char *str, int *index)
+double	parse_fractional_part(char *str, int index)
 {
 	double	fraction;
 	double	divisor;
 
 	fraction = 0.0;
 	divisor = 1.0;
-	while (str[*index] >= '0' && str[*index] <= '9')
+	while (str[index] >= '0' && str[index] <= '9')
 	{
-		fraction = fraction * 10.0 + (str[*index] - '0');
+		fraction = fraction * 10.0 + (str[index] - '0');
 		divisor *= 10.0;
-		(*index)++;
+		(index)++;
 	}
 	return (fraction / divisor);
 }
